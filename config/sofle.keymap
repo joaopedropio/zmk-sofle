@@ -21,7 +21,7 @@
 
 / {
 
-behaviors {
+    behaviors {
         tab_esc_ctrl: tab_esc_ctrl {
             compatible = "zmk,behavior-tap-dance";
             label = "TAB_ESC_CTRL";
@@ -132,6 +132,26 @@ behaviors {
         };
     };
 
+    macros {
+        dqt_spc: dqt_spc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp DQT &kp SPACE>;
+        };
+
+        tilde_spc: tilde_spc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp TILDE &kp SPACE>;
+        };
+
+        sqt_spc: sqt_spc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp SQT &kp SPACE>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -209,11 +229,11 @@ behaviors {
             */
             
             bindings = <
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                         &trans      &trans     &trans      &trans     &trans    &trans
-&trans     &kp LC(Q)    &kp LC(W)    &kp LC(F)    &kp LC(P)    &kp LC(B)                            &kp DQT     &kp LBRC   &kp RBRC    &kp BSLH   &kp PIPE  &trans
-&trans     &kp LC(A)    &kp LC(R)    &kp LC(S)    &kp LC(T)    &kp LC(G)                            &kp TILDE   &kp LBKT   &kp RBKT    &kp GRAVE  &kp SQT   &kp BSPC
-&trans     &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(D)    &kp LC(V)    &trans         &trans   &trans      &kp MINUS  &kp UNDER   &kp EQUAL  &kp PLUS  &trans
-                        &trans       &trans       &trans       &trans       &trans         &mo SYS  &trans      &trans     &trans      &trans
+&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                         &trans     &trans     &trans      &trans     &trans    &trans
+&trans     &kp LC(Q)    &kp LC(W)    &kp LC(F)    &kp LC(P)    &kp LC(B)                            &dqt_spc   &kp LBRC   &kp RBRC    &kp BSLH   &kp PIPE  &trans
+&trans     &kp LC(A)    &kp LC(R)    &kp LC(S)    &kp LC(T)    &kp LC(G)                            &tilde_spc &kp LBKT   &kp RBKT    &kp GRAVE  &sqt_spc  &trans
+&trans     &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(D)    &kp LC(V)    &trans         &trans   &trans     &kp MINUS  &kp UNDER   &kp EQUAL  &kp PLUS  &trans
+                        &trans       &trans       &trans       &trans       &trans         &mo SYS  &trans     &trans     &trans      &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
